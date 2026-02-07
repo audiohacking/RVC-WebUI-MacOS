@@ -62,7 +62,7 @@ By executing `run.sh` in the project root directory, you can configure the `venv
 ```bash
 sh ./run.sh
 ```
-This will start the application. Models will be checked and can be downloaded automatically when needed.
+This will start the application. If models are missing, you'll need to download them using one of the methods described in the "Preparation of Other Files" section below.
 
 #### First-time Setup (with automatic model download)
 ```bash

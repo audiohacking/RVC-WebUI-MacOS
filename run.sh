@@ -17,7 +17,6 @@ for arg in "$@"; do
   case $arg in
     --download-models)
       download_models=true
-      shift
       ;;
     *)
       ;;
@@ -46,10 +45,15 @@ if [ "$download_models" = true ]; then
   if [ $download_exit_code -eq 0 ]; then
     echo ""
     echo "Models are ready!"
-  else
+  elif [ $download_exit_code -eq 2 ]; then
     echo ""
     echo "Note: Model download completed with warnings."
-    echo "The application will still start."
+    echo "Some models may not have downloaded correctly."
+  else
+    echo ""
+    echo "Error: Model download failed."
+    echo "Please check the error messages above and try again."
+    exit 1
   fi
   
   echo ""

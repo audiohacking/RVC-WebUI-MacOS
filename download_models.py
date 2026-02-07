@@ -60,8 +60,9 @@ try:
     else:
         print()
         print("⚠ Warning: Some models may not have downloaded correctly.")
-        print("  The application will still start but may have limited functionality.")
-        sys.exit(1)
+        print("  You may want to try running this script again.")
+        print("  The application may have limited functionality without all models.")
+        sys.exit(2)
         
 except Exception as e:
     print()

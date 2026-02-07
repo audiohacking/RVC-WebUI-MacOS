@@ -37,14 +37,13 @@ An easy-to-use voice conversion framework based on VITS.
 
 ## Features:
 + Reduce tone leakage by replacing the source feature to training-set feature using top1 retrieval;
-+ Easy + fast training, even on poor graphics cards;
++ Easy + fast training, even on Apple Silicon;
 + Training with a small amounts of data (>=10min low noise speech recommended);
 + Model fusion to change timbres (using ckpt processing tab->ckpt merge);
 + Easy-to-use WebUI;
 + UVR5 model to quickly separate vocals and instruments;
 + High-pitch Voice Extraction Algorithm [InterSpeech2023-RMVPE](#Credits) to prevent a muted sound problem. Provides the best results (significantly) and is faster with lower resource consumption than Crepe_full;
-+ AMD/Intel graphics cards acceleration supported;
-+ Intel ARC graphics cards acceleration with IPEX supported.
++ Apple Silicon acceleration with MPS (Metal Performance Shaders) supported.
 
 Check out our [Demo Video](https://www.bilibili.com/video/BV1pm4y1z7Gm/) here!
 
@@ -58,7 +57,7 @@ Check out our [Demo Video](https://www.bilibili.com/video/BV1pm4y1z7Gm/) here!
 python --version # 3.8 <= Python < 3.11
 ```
 
-### Linux/MacOS One-click Dependency Installation & Startup Script
+### MacOS One-click Dependency Installation & Startup Script
 By executing `run.sh` in the project root directory, you can configure the `venv` virtual environment, automatically install the required dependencies, and start the main program with one click.
 ```bash
 sh ./run.sh
@@ -69,32 +68,10 @@ sh ./run.sh
 	```bash
 	pip install torch torchvision torchaudio
 	```
-2. If you are using Nvidia Ampere architecture (RTX30xx) in Windows, according to the experience of #21, you need to specify the cuda version corresponding to pytorch.
-	```bash
-	pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
-	```
 
-3. Install the corresponding dependencies according to your own graphics card.
-- Nvidia GPU
+2. Install the required dependencies:
 	```bash
-	pip install -r requirements/main.txt
-	```
-- AMD/Intel GPU
-	```bash
-	pip install -r requirements/dml.txt
-	```
-- AMD ROCM (Linux)
-	```bash
-	pip install -r requirements/amd.txt
-	```
-- Intel IPEX (Linux)
-	```bash
-	pip install -r requirements/ipex.txt
-	```
-
-4.If you are using an ROCM-capable AMD Radeon GPU, then you need to choose ROCM version of PyTorch.
-	```bash
-	pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.2
+	pip install -r requirements/gui.txt
 	```
 
 ## Preparation of Other Files
@@ -145,50 +122,15 @@ If you want to use the latest RMVPE vocal pitch extraction algorithm, you need t
 	rvcmd assets/rmvpe # RVC-Models-Downloader command
 	```
 
-#### Download DML environment of RMVPE (optional, for AMD/Intel GPU)
-
-- [rmvpe.onnx](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/rmvpe.onnx)
-	```bash
-	rvcmd assets/rmvpe # RVC-Models-Downloader command
-	```
-
-### 3. AMD ROCM (optional, Linux only)
-
-If you want to run RVC on a Linux system based on AMD's ROCM technology, please first install the required drivers [here](https://rocm.docs.amd.com/en/latest/deploy/linux/os-native/install.html).
-
-If you are using Arch Linux, you can use pacman to install the required drivers.
-````
-pacman -S rocm-hip-sdk rocm-opencl-sdk
-````
-For some models of graphics cards, you may need to configure the following environment variables (such as: RX6700XT).
-````
-export ROCM_PATH=/opt/rocm #Set ROCM Executables Path
-export HSA_OVERRIDE_GFX_VERSION=10.3.0 #Spoof GPU Model for ROCM
-````
-Also, make sure your current user is in the `render` and `video` user groups.
-````
-sudo usermod -aG render $USERNAME
-sudo usermod -aG video $USERNAME
-````
 ## Getting Started
 ### Direct Launch
 Use the following command to start the WebUI.
 ```bash
 python web.py
 ```
-### Linux/MacOS
+### MacOS
 ```bash
 ./run.sh
-```
-### For I-card users who need to use IPEX technology (Linux only)
-```bash
-source /opt/intel/oneapi/setvars.sh
-./run.sh
-```
-### Using the Integration Package (Windows Users)
-Download and unzip `RVC-beta.7z`. After unzipping, double-click `go-web.bat` to start the program with one click.
-```bash
-rvcmd packs/general/latest # RVC-Models-Downloader command
 ```
 
 ## Credits

@@ -57,9 +57,18 @@ python --version # 3.8 <= Python < 3.11
 
 ### MacOS One-click Dependency Installation & Startup Script
 By executing `run.sh` in the project root directory, you can configure the `venv` virtual environment, automatically install the required dependencies, and start the main program with one click.
+
+#### Quick Start (without models)
 ```bash
 sh ./run.sh
 ```
+This will start the application. Models will be checked and can be downloaded automatically when needed.
+
+#### First-time Setup (with automatic model download)
+```bash
+sh ./run.sh --download-models
+```
+This will download all required models before starting the application. This is recommended for first-time setup and may take several minutes depending on your internet connection.
 
 ### Manual Installation of Dependencies
 1. Install `pytorch` and its core dependencies, skip if already installed. Refer to: https://pytorch.org/get-started/locally/
@@ -75,12 +84,27 @@ sh ./run.sh
 ## Preparation of Other Files
 ### 1. Assets
 > RVC requires some models located in the `assets` folder for inference and training.
-#### Check/Download Automatically (Default)
+
+#### Automatic Download (Recommended)
+The easiest way to download all required models is using the included download script:
+```bash
+python download_models.py
+```
+
+Or use the run.sh script with the --download-models flag:
+```bash
+sh ./run.sh --download-models
+```
+
+#### Check/Download via Web Interface
 > By default, RVC can automatically check the integrity of the required resources when the main program starts.
 
 > Even if the resources are not complete, the program will continue to start.
 
-- If you want to download all resources, please add the `--update` parameter.
+- If you want to download all resources when starting the web interface, please add the `--update` parameter:
+  ```bash
+  python web.py --update
+  ```
 - If you want to skip the resource integrity check at startup, please add the `--nocheck` parameter.
 
 #### Download Manually
@@ -121,14 +145,26 @@ If you want to use the latest RMVPE vocal pitch extraction algorithm, you need t
 	```
 
 ## Getting Started
+### MacOS (Recommended)
+For first-time setup with automatic model download:
+```bash
+./run.sh --download-models
+```
+
+For subsequent runs:
+```bash
+./run.sh
+```
+
 ### Direct Launch
 Use the following command to start the WebUI.
 ```bash
 python web.py
 ```
-### MacOS
+
+To download all required models before starting:
 ```bash
-./run.sh
+python web.py --update
 ```
 
 ## Credits
@@ -151,12 +187,12 @@ A macOS-optimized version of the Retrieval-based Voice Conversion WebUI, specifi
 ## Features
 
 - Voice conversion with high-quality results
+- Easy one-click setup with automatic model download
 - Optimized for Apple Silicon (M1/M2/M3) Macs
 - User-friendly web interface
 - Support for various audio formats
 - Real-time voice conversion
 - Training capabilities for custom voice models
-- All required models included - no additional downloads needed!
 
 ## Requirements
 
@@ -167,6 +203,27 @@ A macOS-optimized version of the Retrieval-based Voice Conversion WebUI, specifi
 - 10GB free disk space
 
 ## Installation
+
+### Option 1: Quick Setup with run.sh (Recommended)
+
+1. Clone this repository:
+```bash
+git clone https://github.com/audiohacking/RVC-WebUI-MacOS.git
+cd RVC-WebUI-MacOS
+```
+
+2. Run the setup script with automatic model download:
+```bash
+sh ./run.sh --download-models
+```
+
+This will automatically:
+- Create a virtual environment
+- Install all dependencies
+- Download all required models
+- Start the web interface
+
+### Option 2: Manual Installation
 
 1. Clone this repository:
 ```bash
@@ -185,16 +242,30 @@ source .venv/bin/activate
 pip install -r requirements/gui.txt
 ```
 
-> **Note**: This repository includes all necessary model files. You don't need to download any additional models. However, if you want to use different models, you can download them from the original repository.
+4. Download models:
+```bash
+python web.py --update
+```
 
 ## Usage
 
-1. Start the web interface:
+### Using run.sh (Recommended)
+```bash
+./run.sh
+```
+
+### Manual Launch
+1. Activate the virtual environment:
+```bash
+source .venv/bin/activate
+```
+
+2. Start the web interface:
 ```bash
 python web.py --port 7860
 ```
 
-2. Open your web browser and navigate to:
+3. Open your web browser and navigate to:
 ```
 http://localhost:7860
 ```

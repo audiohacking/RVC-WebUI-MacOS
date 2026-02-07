@@ -62,7 +62,7 @@ By executing `run.sh` in the project root directory, you can configure the `venv
 ```bash
 sh ./run.sh
 ```
-This will start the application. If models are missing, you'll need to download them using one of the methods described in the "Preparation of Other Files" section below.
+This will start the application. If models are missing, you'll need to download them first - see "Automatic Download" under the Assets section below.
 
 #### First-time Setup (with automatic model download)
 ```bash
@@ -187,7 +187,7 @@ A macOS-optimized version of the Retrieval-based Voice Conversion WebUI, specifi
 ## Features
 
 - Voice conversion with high-quality results
-- Easy one-click setup with automatic model download
+- Easy automated setup with automatic model download
 - Optimized for Apple Silicon (M1/M2/M3) Macs
 - User-friendly web interface
 - Support for various audio formats

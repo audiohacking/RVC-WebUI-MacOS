@@ -164,7 +164,7 @@ A macOS-optimized version of the Retrieval-based Voice Conversion WebUI, specifi
 
 - macOS 12.0 or later
 - Apple Silicon Mac (M1/M2/M3)
-- Python 3.10 or later
+- Python 3.8 to 3.10 (due to fairseq compatibility, see [bug](https://github.com/facebookresearch/fairseq/issues/5012))
 - 8GB RAM minimum (16GB recommended)
 - 10GB free disk space
 
@@ -172,7 +172,7 @@ A macOS-optimized version of the Retrieval-based Voice Conversion WebUI, specifi
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/NevilPatel01/RVC-WebUI-MacOS.git
+git clone https://github.com/audiohacking/RVC-WebUI-MacOS.git
 cd RVC-WebUI-MacOS
 ```
 
